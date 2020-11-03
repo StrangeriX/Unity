@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController controller;
     Vector3 velocity;
     public Transform groundCheck;
+    public Camera fpCamera;
+    public Camera tpCamera;
 
     public float speed = 12f;
     public float gravity = -9f;
@@ -17,10 +20,24 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded;
 
 
+    private void Start()
+    {
+        fpCamera.enabled = false;
+    }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.V) && fpCamera.enabled == true)
+        {
+            fpCamera.enabled = false;
+            tpCamera.enabled = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.V) && tpCamera.enabled == true)
+        {
+            fpCamera.enabled = true;
+            tpCamera.enabled = false;
+        }
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGrounded && velocity.y < 0)
@@ -42,6 +59,11 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
+        
     }
-
+    private void OnCollisionEnter(Collision collision)
+    {
+        GameObject otherObj = collision.gameObject;
+        Debug.Log("Collided with: " + otherObj);
+    }
 }
