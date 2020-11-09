@@ -61,9 +61,13 @@ public class PlayerMovement : MonoBehaviour
         }
         
     }
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        GameObject otherObj = collision.gameObject;
-        Debug.Log("Collided with: " + otherObj);
+        if (other.gameObject.CompareTag("Jump"))
+        {
+            Debug.Log("Im jumping");
+            velocity.y = Mathf.Sqrt(3 * jumpHeight * -2f * gravity);
+        }
     }
 }

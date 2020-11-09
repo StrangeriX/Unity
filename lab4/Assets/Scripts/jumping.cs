@@ -17,9 +17,13 @@ public class jumping : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        GameObject otherObj = collision.gameObject;
-        Debug.Log("Collided with: " + otherObj);
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("JUMP!");
+
+
+        }
     }
 }
