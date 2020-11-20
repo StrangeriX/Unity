@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,6 +9,13 @@ public class PauseMenu : MonoBehaviour
     public static bool isPaused = false;
 
     public GameObject pauseMenuUI;
+
+
+    private void Start()
+    {
+        isPaused = false;
+        Time.timeScale = 1f;
+    }
 
     void Update()
     {
@@ -30,7 +38,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         isPaused = true;
-
+        SwordScript.canAttack = false;
         Time.timeScale = 0f;
     }
 
@@ -40,7 +48,7 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         isPaused = false;
-
+        SwordScript.canAttack = true;
         Time.timeScale = 1f;
     }
 

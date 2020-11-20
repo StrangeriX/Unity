@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     public int currentExp;
     public ExpBar expBar;
 
+    public int lvl;
+
 
     // Start is called before the first frame update
     private void Start()
@@ -22,8 +24,8 @@ public class Player : MonoBehaviour
         healthBar.maxHealt(maxHealth);
 
         currentExp = 0;
-        Debug.Log(expBar.slider.maxValue);
         expBar.MaxExp(10);
+
         
     }
 
