@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Build;
 using UnityEngine;
 
 public class Quest001 : MonoBehaviour
@@ -11,6 +10,7 @@ public class Quest001 : MonoBehaviour
     public GameObject sword;
     private bool takeSword;
     public static bool swordIsTaken;
+
 
     public GameObject ChestInteraction;
 
@@ -50,6 +50,7 @@ public class Quest001 : MonoBehaviour
     {
         FakeSword.SetActive(false);
         sword.SetActive(true);
+        Quest001_progress.QuestProgress = 4;
     }
 
 }

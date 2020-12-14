@@ -10,11 +10,15 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseMenuUI;
 
-
-    private void Start()
+    private void Awake()
     {
         isPaused = false;
         Time.timeScale = 1f;
+    }
+
+    private void Start()
+    {
+
     }
 
     void Update()
